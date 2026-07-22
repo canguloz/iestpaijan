@@ -1,0 +1,103 @@
+/* ====== FRANJA DE SECCIÓN ====== */
+.section-banner {
+  position: relative;
+  background: url("../imagenes/frontis.jpg") no-repeat center center/cover;
+  padding: 3rem 1rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Degradado superpuesto */
+.section-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(122, 16, 32, 0.88), rgba(50, 8, 12, 0.8));
+  border-radius: 12px;
+}
+
+.section-banner h1 {
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 1;
+}
+
+.section-banner h1 i {
+  font-size: 1.8rem;
+}
+
+
+/** CONTENIDO **/
+/* ===== Tabs ===== */
+/* ====== TABS MEJORADOS ====== */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* Botones */
+.tab-button {
+  background: none;
+  border: none;
+  padding: 0.9rem 1.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tab-button:hover {
+  color: #800000;
+  background: rgba(128,0,0,0.06);
+}
+
+/* Activo */
+.tab-button.active {
+  color: #800000;
+  font-weight: 600;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #ddd;
+  border-bottom: 2px solid #fff;
+  z-index: 1;
+}
+
+/* ====== CONTENIDO ====== */
+.tab-content {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0 12px 12px 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Panel oculto */
+.tab-panel {
+  display: none;
+}
+
+/* Panel activo */
+.tab-panel.active {
+  display: block;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

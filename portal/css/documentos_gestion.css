@@ -1,0 +1,135 @@
+/* ====== FRANJA DE SECCIÓN ====== */
+.section-banner {
+  position: relative;
+  background: url("../imagenes/frontis.jpg") no-repeat center center/cover;
+  padding: 3rem 1rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Degradado superpuesto */
+.section-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(122, 16, 32, 0.88), rgba(50, 8, 12, 0.8));
+  border-radius: 12px;
+}
+
+.section-banner h1 {
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 1;
+}
+
+.section-banner h1 i {
+  font-size: 1.8rem;
+}
+
+
+
+/** contenido */
+/* ====== DOCUMENTOS ====== */
+.titulo-seccion {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #800000; /* Guinda */
+}
+
+.documentos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.document-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.document-card:hover {
+  transform: translateY(-5px);
+}
+
+.document-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.btn-vista {
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  background: linear-gradient(135deg, #800000, #330066);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btn-vista:hover {
+  opacity: 0.9;
+}
+
+/* ====== MODAL ====== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 80%;
+  height: 80%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+#pdfViewer {
+  flex: 1;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+}
+
+.mensaje-error {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #800000;
+  margin: auto;
+}

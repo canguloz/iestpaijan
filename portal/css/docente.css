@@ -1,0 +1,119 @@
+/* ====== FRANJA DE SECCIÓN ====== */
+.section-banner {
+  position: relative;
+  background: url("../imagenes/frontis.jpg") no-repeat center center/cover;
+  padding: 3rem 1rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Degradado superpuesto */
+.section-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(122, 16, 32, 0.88), rgba(50, 8, 12, 0.8));
+  border-radius: 12px;
+}
+
+.section-banner h1 {
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 1;
+}
+
+.section-banner h1 i {
+  font-size: 1.8rem;
+}
+
+
+/* === Contenedor principal === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* === Sección de área === */
+.docente__area {
+  margin-bottom: 60px;
+}
+
+.docente__area h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #800000;
+  border-left: 6px solid #800000;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* === Grid de docentes === */
+.docente__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* === Tarjetas de docentes === */
+.docente__card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  text-align: center;   /* centra texto y contenido */
+  padding: 20px 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  display: flex;              /* NUEVO */
+  flex-direction: column;     /* NUEVO */
+  align-items: center;        /* NUEVO -> centra horizontal */
+  justify-content: center;    /* NUEVO -> centra vertical */
+}
+
+.docente__card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #80000033;
+  display: block;             /* aseguro que sea bloque */
+  margin-left: auto;          /* centra en caso de fallback */
+  margin-right: auto;         /* centra en caso de fallback */
+}
+
+
+.docente__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+}
+
+
+
+.docente__card h3 {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .section-banner h1 {
+    font-size: 2rem;
+  }
+
+  .docente__area h2 {
+    font-size: 1.5rem;
+  }
+}

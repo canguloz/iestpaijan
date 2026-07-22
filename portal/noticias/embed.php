@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noticias - IESTP PAIJÁN</title>
+  <link rel="stylesheet" href="../css/noticias.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body { margin: 0; background: transparent; }
+    .news-feed { min-height: 100px; }
+  </style>
+</head>
+<body>
+
+   <main id="noticias" class="noticias">
+        <div class="container">
+            <h2 class="section-title">Últimas Noticias</h2>
+            <div id="news-feed" class="news-feed"></div>
+        </div>
+  </main>
+
+  <div id="news-modal" class="modal">
+    <button class="close">&times;</button>
+    <div class="modal-content">
+      <div class="carousel">
+        <button class="prev">&#10094;</button>
+        <img id="modal-img" src="" alt="">
+        <button class="next">&#10095;</button>
+      </div>
+      <h3 id="modal-title"></h3>
+      <span class="modal-date" id="modal-date"></span>
+      <p id="modal-text"></p>
+    </div>
+  </div>
+
+<script>
+const noticias = [
+  { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar.", imagen: ["../imagenes/noticias/aviso-2026-1.jpeg", "../imagenes/noticias/aviso-2026-1.jpeg"] },
+  { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar.", imagen: ["../imagenes/noticias/fallesimiento_07_05_2026.jpeg", "../imagenes/noticias/fallesimiento_07_05_2026.jpeg"] },
+  { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador", imagen: ["../imagenes/noticias/dia_del_trabajador.jpeg", "../imagenes/noticias/dia_del_trabajador.jpeg"] },
+  { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación.", imagen: ["../imagenes/noticias/graduacion2026.jpg", "../imagenes/noticias/integrantes2026.jpg"] },
+  { titulo: "Examen de Admisión", fecha: "03/04/2026", contenido: "Prepárate para ingresar!", imagen: ["../imagenes/admision/primer_admision/1.jpeg"] },
+  { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones.", imagen: ["../imagenes/noticias/inicio_clases20252.jpg"] },
+];
+
+(function() {
+  const feed = document.getElementById("news-feed");
+  if (!feed) { console.warn("noticias: #news-feed no encontrado"); return; }
+
+  const modal = document.getElementById("news-modal");
+  const modalImg = document.getElementById("modal-img");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDate = document.getElementById("modal-date");
+  const modalText = document.getElementById("modal-text");
+  const closeBtn = document.querySelector(".close");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  noticias.forEach(noticia => {
+    const card = document.createElement("div");
+    card.className = "news-card";
+    card.innerHTML =
+      '<img src="' + noticia.imagen[0] + '" alt="' + noticia.titulo + '" class="news-img" loading="lazy">' +
+      '<div class="news-content">' +
+        '<h3>' + noticia.titulo + '</h3>' +
+        '<span class="news-date">' + noticia.fecha + '</span>' +
+        '<p>' + noticia.contenido + '</p>' +
+      '</div>';
+
+    card.addEventListener("click", function() {
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+      currentImages = noticia.imagen;
+      currentIndex = 0;
+      showImage(currentIndex);
+      modalTitle.textContent = noticia.titulo;
+      modalDate.textContent = noticia.fecha;
+      modalText.textContent = noticia.contenido;
+    });
+
+    feed.appendChild(card);
+  });
+
+  function showImage(index) {
+    if (currentImages && currentImages[index]) {
+      modalImg.src = currentImages[index];
+    }
+  }
+
+  if (prevBtn) prevBtn.addEventListener("click", function() {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    showImage(currentIndex);
+  });
+
+  if (nextBtn) nextBtn.addEventListener("click", function() {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    showImage(currentIndex);
+  });
+
+  if (closeBtn) closeBtn.addEventListener("click", function() {
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+  });
+
+  window.addEventListener("click", function(e) {
+    if (e.target === modal) {
+      modal.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      modal.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  });
+})();
+</script>
+</body>
+</html>
