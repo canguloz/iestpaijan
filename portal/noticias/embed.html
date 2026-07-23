@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -13,6 +13,7 @@
   </style>
 </head>
 <body>
+<div id="page-loader" class="page-loader"><div class="page-loader__ring"></div></div>
 
    <main id="noticias" class="noticias">
         <div class="container">
@@ -124,5 +125,6 @@ const noticias = [
   });
 })();
 </script>
+<script>(function(){var l=document.getElementById("page-loader");if(l){window.addEventListener("load",function(){l.classList.add("is-hidden")})}})();</script>
 </body>
 </html>
