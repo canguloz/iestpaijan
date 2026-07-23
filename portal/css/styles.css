@@ -54,7 +54,7 @@ img {
   right: 0;
   z-index: 1000;
   height: 70px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(24px) saturate(1.8);
   -webkit-backdrop-filter: blur(24px) saturate(1.8);
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -275,31 +275,27 @@ img {
 }
 
 .header__social-icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   display: block;
   transition: transform 0.25s ease, opacity 0.25s ease;
-  opacity: 0.65;
+  opacity: 0.8;
 }
 
 .header__social-icon:hover {
-  transform: scale(1.25);
+  transform: scale(1.2);
   opacity: 1;
 }
 
 /* Hero pages: white social icons */
  .has-hero .header:not(.scrolled) .header__social-icon {
   filter: brightness(0) invert(1);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
  .has-hero .header:not(.scrolled) .header__social-icon:hover {
   opacity: 1;
-}
-
-.header__social-icon:hover {
-  transform: scale(1.25);
-  opacity: 1;
+  transform: scale(1.2);
 }
 
 .btn {
