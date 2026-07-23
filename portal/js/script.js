@@ -64,17 +64,23 @@ document.querySelectorAll('.nav__item > .nav__link').forEach(link => {
 
 
 // ==============================
-// HERO PARALLAX (static)
+// HERO PARALLAX (smooth transform)
 // ==============================
-document.querySelectorAll('.hero').forEach(hero => {
+const heroBg = document.querySelector('.hero__bg');
+if (heroBg) {
+  let ticking = false;
   window.addEventListener('scroll', () => {
-    const rect = hero.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      const offset = (window.scrollY - hero.offsetTop + window.innerHeight) * 0.15;
-      hero.style.backgroundPosition = `center ${50 + offset * 0.02}%`;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const translate = y * 0.15;
+        heroBg.style.transform = `translateY(${translate}px)`;
+        ticking = false;
+      });
+      ticking = true;
     }
   }, { passive: true });
-});
+}
 
 // ==============================
 // PROGRAMAS (Tabs)
