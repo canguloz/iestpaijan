@@ -80,6 +80,11 @@ window.addEventListener('hashchange', () => {
   if (window.innerWidth <= 900) closeNav();
 });
 
+// Forzar updateHeader al cargar la página (si hay hash inicial)
+window.addEventListener('load', () => {
+  setTimeout(updateHeader, 100);
+});
+
 
 // ==============================
 // HERO PARALLAX (static)
