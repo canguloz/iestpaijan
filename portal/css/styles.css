@@ -983,7 +983,7 @@ body.nav-open {
   justify-content: center;
   gap: 0.15rem;
   padding: 0.7rem 2rem 0.6rem;
-  background: linear-gradient(145deg, rgba(212,184,86,0.12), rgba(212,184,86,0.04));
+  background: transparent;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: none;
@@ -997,8 +997,7 @@ body.nav-open {
   z-index: 3;
   cursor: pointer;
   margin: 0;
-  box-shadow:
-    0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   animation: heroFloat 3s ease-in-out infinite;
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   overflow: hidden;
@@ -1028,7 +1027,7 @@ body.nav-open {
 }
 
 .hero__scroll-btn:hover {
-  background: linear-gradient(145deg, rgba(212,184,86,0.22), rgba(212,184,86,0.08));
+  background: transparent;
   color: #f0df9a;
   transform: translateY(-5px) scale(1.05);
   box-shadow:
