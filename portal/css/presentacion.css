@@ -15,7 +15,7 @@
 .pres-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(26,26,46,0.92) 0%, rgba(122,16,32,0.85) 50%, rgba(15,52,96,0.9) 100%);
+  background: linear-gradient(160deg, rgba(15,15,35,0.92) 0%, rgba(80,10,20,0.75) 40%, rgba(15,15,35,0.88) 100%);
   z-index: 1;
 }
 
@@ -93,7 +93,7 @@
 
 /* Stats Bar */
 .pres-stats {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(160deg, #0f0f23 0%, #1a1a2e 50%, #12122a 100%);
   padding: 3rem 0;
 }
 
@@ -270,7 +270,7 @@
 /* CTA Section */
 .pres-cta {
   padding: 5rem 0;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(160deg, #0f0f23 0%, #1a1a2e 50%, #12122a 100%);
   text-align: center;
 }
 
