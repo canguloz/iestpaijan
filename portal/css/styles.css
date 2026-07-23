@@ -2760,3 +2760,360 @@ p {
 @keyframes pageLoaderSpin {
   to { transform: rotate(360deg); }
 }
+
+/* ==============================
+   REVEAL ON SCROLL
+============================== */
+body.js-enabled .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: opacity, transform;
+}
+
+body.js-enabled .reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==============================
+   ENHANCED HOVER EFFECTS
+============================== */
+.beneficio-card {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.beneficio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.beneficio-card:hover .beneficio-icon {
+  transform: scale(1.15);
+  color: #7a1020;
+}
+
+.beneficio-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* ==============================
+   FLOATING LABELS FORM
+============================== */
+.form__group {
+  position: relative;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.form__row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form__row .form__group {
+  flex: 1;
+}
+
+.form__input {
+  width: 100%;
+  padding: 1.25rem 1rem 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #333;
+  background: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.form__input:focus {
+  background: #fff;
+  border-color: #7a1020;
+  box-shadow: 0 0 0 4px rgba(122, 16, 32, 0.1);
+}
+
+.form__label-float {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: #666;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: left top;
+}
+
+textarea.form__input ~ .form__label-float {
+  top: 1.2rem;
+  transform: none;
+}
+
+.form__input:focus ~ .form__label-float,
+.form__input:not(:placeholder-shown) ~ .form__label-float {
+  top: 0.4rem;
+  transform: translateY(0) scale(0.75);
+  color: #7a1020;
+  font-weight: 600;
+}
+
+textarea.form__input:focus ~ .form__label-float,
+textarea.form__input:not(:placeholder-shown) ~ .form__label-float {
+  transform: scale(0.75);
+}
+
+/* ==============================
+   CONTACT CARDS — CLICKABLE
+============================== */
+.contact-card[data-action] {
+  cursor: pointer;
+}
+
+.contact-card[data-action]:active {
+  transform: scale(0.97);
+}
+
+.contact-card[data-action] .contact-card__value {
+  position: relative;
+}
+
+.contact-card[data-action]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(122,16,32,0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.contact-card[data-action]:hover::before {
+  opacity: 1;
+}
+
+/* ── Hours badge ── */
+.hours-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.hours-badge.is-open {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.hours-badge.is-closed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ── Map overlay button ── */
+.map-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(232, 224, 216, 0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(2px);
+}
+
+.map-overlay-btn {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+}
+
+.map-overlay-btn a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.map-overlay-btn a:hover {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+  color: #7a1020;
+}
+
+.map-overlay-btn a svg {
+  flex-shrink: 0;
+}
+
+/* ── Form actions ── */
+.form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Submit button loading state */
+.contact-submit .btn-loading-text {
+  display: none;
+}
+
+.contact-submit.is-loading .btn-text {
+  display: none;
+}
+
+.contact-submit.is-loading .btn-loading-text {
+  display: inline;
+}
+
+.contact-submit.is-loading .submit-icon {
+  animation: spin 0.8s linear infinite;
+}
+
+.contact-submit.is-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* WhatsApp button */
+.contact-whatsapp-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: 1.5px solid #25D366;
+  border-radius: 12px;
+  background: #fff;
+  color: #25D366;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contact-whatsapp-btn:hover {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+  transform: translateY(-2px);
+}
+
+.contact-whatsapp-btn:active {
+  transform: translateY(0);
+}
+
+.contact-whatsapp-btn svg {
+  flex-shrink: 0;
+}
+
+/* ── Toast modal ── */
+.toast-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.toast-modal.is-open {
+  display: flex;
+}
+
+.toast-content {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem 2rem;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+  animation: toastIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.toast-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, #7a1020, #5a0c18);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.toast-content h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.toast-content p {
+  margin: 0 0 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.toast-btn {
+  background: linear-gradient(135deg, #7a1020, #5a0c18);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 2.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.toast-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(122, 16, 32, 0.3);
+}
+
+.toast-btn:active {
+  transform: translateY(0);
+}

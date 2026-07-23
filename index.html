@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>IESTP PAIJÁN</title>
     <meta name="description" content="Página Oficial de IESTP PAIJÁN." />
-    <link rel="stylesheet" href="portal/css/styles.css?v=6" />
+    <link rel="stylesheet" href="portal/css/styles.css?v=10" />
+    <link rel="stylesheet" href="portal/css/noticias.css?v=10" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -158,42 +159,42 @@
                     <p class="beneficios-subtitle">Formación técnica gratuita con los más altos estándares de calidad educativa</p>
                 </div>
                 <div class="beneficios-grid">
-                    <article class="beneficio-card">
+                    <article class="beneficio-card reveal-on-scroll">
                         <div class="beneficio-icon-wrap">
                             <i class="fas fa-credit-card beneficio-icon"></i>
                         </div>
                         <h3 class="beneficio-title">Sin Mensualidad</h3>
                         <p class="beneficio-desc">Educación superior pública gratuita para todos nuestros estudiantes.</p>
                     </article>
-                    <article class="beneficio-card">
+                    <article class="beneficio-card reveal-on-scroll">
                         <div class="beneficio-icon-wrap">
                             <i class="fas fa-graduation-cap beneficio-icon"></i>
                         </div>
                         <h3 class="beneficio-title">Convalidación Universitaria</h3>
                         <p class="beneficio-desc">Convalida tus estudios con universidades nacionales e internacionales.</p>
                     </article>
-                    <article class="beneficio-card">
+                    <article class="beneficio-card reveal-on-scroll">
                         <div class="beneficio-icon-wrap">
                             <i class="fas fa-award beneficio-icon"></i>
                         </div>
                         <h3 class="beneficio-title">Título Oficial</h3>
                         <p class="beneficio-desc">Obtén un título técnico profesional a nombre de la Nación.</p>
                     </article>
-                    <article class="beneficio-card">
+                    <article class="beneficio-card reveal-on-scroll">
                         <div class="beneficio-icon-wrap">
                             <i class="fas fa-chalkboard-teacher beneficio-icon"></i>
                         </div>
                         <h3 class="beneficio-title">Docentes Calificados</h3>
                         <p class="beneficio-desc">Planilla docente con amplia experiencia profesional y pedagógica.</p>
                     </article>
-                    <article class="beneficio-card">
+                    <article class="beneficio-card reveal-on-scroll">
                         <div class="beneficio-icon-wrap">
                             <i class="fas fa-check-circle beneficio-icon"></i>
                         </div>
                         <h3 class="beneficio-title">Calidad Educativa</h3>
                         <p class="beneficio-desc">Servicio educativo con estándares de calidad y mejora continua.</p>
                     </article>
-                    <article class="beneficio-card">
+                    <article class="beneficio-card reveal-on-scroll">
                         <div class="beneficio-icon-wrap">
                             <i class="fas fa-laptop-code beneficio-icon"></i>
                         </div>
@@ -282,8 +283,127 @@
                     <h2 style="font-size:clamp(1.6rem,3.2vw,2.2rem); font-weight:800; color:#1a1a2e; margin:0 0 0.5rem; letter-spacing:-0.03em">Noticias y Eventos</h2>
                     <p style="color:#666; max-width:520px; margin:0 auto">Lo último de la comunidad académica del IESTP Paiján</p>
                 </header>
-                <div class="news__iframe-wrapper">
-                    <iframe src="portal/noticias/embed.html" width="100%" height="750" style="border:none"></iframe>
+                <div class="news__iframe-wrapper" style="position: relative; z-index: 1;">
+                    <div id="news-feed" class="news-feed"></div>
+                    
+                    <div id="news-modal" class="modal">
+                        <button class="close">&times;</button>
+                        <div class="modal-content">
+                            <div class="carousel">
+                                <button class="prev">&#10094;</button>
+                                <img id="modal-img" src="" alt="">
+                                <button class="next">&#10095;</button>
+                            </div>
+                            <h3 id="modal-title"></h3>
+                            <span class="modal-date" id="modal-date"></span>
+                            <p id="modal-text"></p>
+                        </div>
+                    </div>
+                    <script>
+                    (function() {
+                      function renderNoticias() {
+                        var feed = document.getElementById("news-feed");
+                        if (!feed || feed.children.length > 0) return;
+                        
+                        var isPortalDir = window.location.pathname.includes('/portal/') || window.location.pathname.endsWith('/portal');
+                        var imgBase = isPortalDir ? 'imagenes/' : 'portal/imagenes/';
+
+                        var noticias = [
+                          { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026.", imagen: [imgBase + "noticias/aviso-2026-1.jpeg", imgBase + "noticias/aviso-2026-1.jpeg"] },
+                          { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar.", imagen: [imgBase + "noticias/fallesimiento_07_05_2026.jpeg", imgBase + "noticias/fallesimiento_07_05_2026.jpeg"] },
+                          { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador", imagen: [imgBase + "noticias/dia_del_trabajador.jpeg", imgBase + "noticias/dia_del_trabajador.jpeg"] },
+                          { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación.", imagen: [imgBase + "noticias/graduacion2026.jpg", imgBase + "noticias/integrantes2026.jpg"] },
+                          { titulo: "Examen de Admisión", fecha: "03/04/2026", contenido: "Prepárate para ingresar!", imagen: [imgBase + "admision/primer_admision/1.jpeg"] },
+                          { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones.", imagen: [imgBase + "noticias/inicio_clases20252.jpg"] }
+                        ];
+
+                        var modal = document.getElementById("news-modal");
+                        var modalImg = document.getElementById("modal-img");
+                        var modalTitle = document.getElementById("modal-title");
+                        var modalDate = document.getElementById("modal-date");
+                        var modalText = document.getElementById("modal-text");
+                        var closeBtn = document.querySelector("#news-modal .close");
+                        var prevBtn = document.querySelector("#news-modal .prev");
+                        var nextBtn = document.querySelector("#news-modal .next");
+
+                        var currentImages = [];
+                        var currentIndex = 0;
+
+                        noticias.forEach(function(noticia, index) {
+                          var card = document.createElement("div");
+                          card.className = "news-card";
+                          card.style.setProperty("--i", index);
+                          card.innerHTML =
+                            '<img src="' + noticia.imagen[0] + '" alt="' + noticia.titulo + '" class="news-img" loading="lazy">' +
+                            '<div class="news-content">' +
+                              '<h3>' + noticia.titulo + '</h3>' +
+                              '<span class="news-date">' + noticia.fecha + '</span>' +
+                              '<p>' + noticia.contenido + '</p>' +
+                            '</div>';
+
+                          card.addEventListener("click", function() {
+                            if (!modal) return;
+                            modal.style.display = "flex";
+                            document.body.style.overflow = "hidden";
+                            currentImages = noticia.imagen;
+                            currentIndex = 0;
+                            showImage(currentIndex);
+                            if (modalTitle) modalTitle.textContent = noticia.titulo;
+                            if (modalDate) modalDate.textContent = noticia.fecha;
+                            if (modalText) modalText.textContent = noticia.contenido;
+                          });
+
+                          feed.appendChild(card);
+                        });
+
+                        function showImage(index) {
+                          if (modalImg && currentImages && currentImages[index]) {
+                            modalImg.src = currentImages[index];
+                          }
+                        }
+
+                        if (prevBtn) prevBtn.addEventListener("click", function(e) {
+                          e.stopPropagation();
+                          if (!currentImages.length) return;
+                          currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+                          showImage(currentIndex);
+                        });
+
+                        if (nextBtn) nextBtn.addEventListener("click", function(e) {
+                          e.stopPropagation();
+                          if (!currentImages.length) return;
+                          currentIndex = (currentIndex + 1) % currentImages.length;
+                          showImage(currentIndex);
+                        });
+
+                        if (closeBtn) closeBtn.addEventListener("click", function(e) {
+                          e.stopPropagation();
+                          if (modal) modal.style.display = "none";
+                          document.body.style.overflow = "";
+                        });
+
+                        window.addEventListener("click", function(e) {
+                          if (e.target === modal) {
+                            if (modal) modal.style.display = "none";
+                            document.body.style.overflow = "";
+                          }
+                        });
+
+                        document.addEventListener("keydown", function(e) {
+                          if (e.key === "Escape" && modal) {
+                            modal.style.display = "none";
+                            document.body.style.overflow = "";
+                          }
+                        });
+                      }
+
+                      if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', renderNoticias);
+                      } else {
+                        renderNoticias();
+                      }
+                    })();
+                    </script>
                 </div>
             </div>
         </section>
@@ -301,7 +421,7 @@
                     </header>
 
                     <div class="contact-cards">
-                        <article class="contact-card">
+                        <article class="contact-card" data-action="phone" data-value="+51919490297">
                             <div class="contact-card__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             </div>
@@ -310,7 +430,7 @@
                                 <span class="contact-card__value">919490297</span>
                             </div>
                         </article>
-                        <article class="contact-card">
+                        <article class="contact-card" data-action="email" data-value="admision@iestpaijan.edu.pe">
                             <div class="contact-card__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                             </div>
@@ -319,7 +439,7 @@
                                 <span class="contact-card__value">admision@iestpaijan.edu.pe</span>
                             </div>
                         </article>
-                        <article class="contact-card">
+                        <article class="contact-card" data-action="address" data-value="https://maps.google.com/?q=Calle+Jesus+de+Nazareth+S%2FN+AA.HH.+Los+Cedros+Mz.+A.+Lote+01+Paij%C3%A1n">
                             <div class="contact-card__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </div>
@@ -328,18 +448,25 @@
                                 <span class="contact-card__value">Calle Jesus de Nazareth S/N AA.HH. Los Cedros Mz. A. Lote 01</span>
                             </div>
                         </article>
-                        <article class="contact-card">
+                        <article class="contact-card" data-action="hours">
                             <div class="contact-card__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                             </div>
                             <div class="contact-card__body">
                                 <span class="contact-card__label">Horario</span>
                                 <span class="contact-card__value">Lunes a Viernes · 01:00 pm a 08:00 pm</span>
+                                <span class="hours-badge"></span>
                             </div>
                         </article>
                     </div>
 
                     <div class="map-container">
+                        <div class="map-overlay-btn">
+                            <a href="https://maps.google.com/?q=IESTP+Paij%C3%A1n" target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                Ver en Google Maps
+                            </a>
+                        </div>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.7734182967265!2d-79.29756042456054!3d-7.736921376825227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x90a2a468d6ef05e7%3A0x70c1e457f12e8c25!2sIESTP%20Paij%C3%A1n!5e0!3m2!1ses!2spe!4v1701386121404!5m2!1ses!2spe"
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
@@ -354,43 +481,62 @@
                         <h2>Tu mensaje</h2>
                         <p>Déjanos tus datos y te contactaremos a la brevedad.</p>
                     </header>
-                    <form class="form">
-                        <label class="form__label">
-                            <span class="form__label-text">Nombre completo</span>
-                            <input class="form__input" type="text" placeholder="Ej: Juan Pérez" required />
-                        </label>
-                        <div class="form__row">
-                            <label class="form__label">
-                                <span class="form__label-text">Correo electrónico</span>
-                                <input class="form__input" type="email" placeholder="correo@ejemplo.com" required />
-                            </label>
-                            <label class="form__label">
-                                <span class="form__label-text">Teléfono</span>
-                                <input class="form__input" type="tel" placeholder="999 999 999" required />
-                            </label>
+                    <form class="form" id="contact-form">
+                        <div class="form__group reveal-on-scroll">
+                            <input class="form__input" type="text" id="nombre" placeholder=" " required />
+                            <label class="form__label-float" for="nombre">Nombre completo</label>
                         </div>
-                        <label class="form__label">
-                            <span class="form__label-text">Programa de interés</span>
-                            <select class="form__input" required>
-                                <option value="" disabled selected>Selecciona un programa</option>
+                        <div class="form__row reveal-on-scroll">
+                            <div class="form__group">
+                                <input class="form__input" type="email" id="correo" placeholder=" " required />
+                                <label class="form__label-float" for="correo">Correo electrónico</label>
+                            </div>
+                            <div class="form__group">
+                                <input class="form__input" type="tel" id="telefono" placeholder=" " required />
+                                <label class="form__label-float" for="telefono">Teléfono</label>
+                            </div>
+                        </div>
+                        <div class="form__group reveal-on-scroll">
+                            <select class="form__input" id="programa" required>
+                                <option value="" disabled selected></option>
                                 <option value="ACC">Administración de Centro de Cómputo</option>
                                 <option value="PROD_AGRO">Producción Agropecuaria</option>
                                 <option value="enfermeria">Enfermería Técnica</option>
                             </select>
-                        </label>
-                        <label class="form__label">
-                            <span class="form__label-text">Mensaje</span>
-                            <textarea class="form__input" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
-                        </label>
-                        <button class="btn btn--primary contact-submit" type="submit">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                            Enviar mensaje
-                        </button>
+                            <label class="form__label-float" for="programa">Programa de interés</label>
+                        </div>
+                        <div class="form__group reveal-on-scroll">
+                            <textarea class="form__input" id="mensaje" rows="4" placeholder=" "></textarea>
+                            <label class="form__label-float" for="mensaje">Mensaje</label>
+                        </div>
+                        <div class="form__actions reveal-on-scroll">
+                            <button class="btn btn--primary contact-submit" type="submit" id="contact-submit">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="submit-icon"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                <span class="btn-text">Enviar mensaje</span>
+                                <span class="btn-loading-text">Enviando...</span>
+                            </button>
+                            <button class="contact-whatsapp-btn" type="button" id="contact-whatsapp-btn">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                Enviar por WhatsApp
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Toast de confirmación -->
+    <div id="toast-modal" class="toast-modal" role="alert">
+        <div class="toast-content">
+            <div class="toast-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>¡Mensaje enviado con éxito!</h3>
+            <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
+            <button class="toast-btn" id="toast-close">Entendido</button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -461,7 +607,7 @@
     <a href="https://wa.me/51919490297" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z/></svg>
     </a>
-    <script src="portal/js/script.js?v=6"></script>
+    <script src="portal/js/script.js?v=11"></script>
     <script>
     (function(){
       var btn = document.getElementById("to-top");
