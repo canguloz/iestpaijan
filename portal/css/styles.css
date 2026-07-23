@@ -1165,6 +1165,22 @@ body.nav-open {
 }
 
 .beneficio-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.6s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transform-style: preserve-3d;
+  perspective: 800px;
   animation: cardEntrance 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -1186,25 +1202,6 @@ body.nav-open {
     transform: translateY(0) scale(1);
     filter: blur(0);
   }
-}
-
-.beneficio-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 2rem 1.75rem;
-  text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.04),
-    0 1px 3px rgba(0, 0, 0, 0.02);
-  transition:
-    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.6s ease;
-  position: relative;
-  overflow: hidden;
-  cursor: default;
-  transform-style: preserve-3d;
-  perspective: 800px;
 }
 
 .beneficio-card::before {
@@ -1244,9 +1241,7 @@ body.nav-open {
 
 .beneficio-card:hover {
   transform: translateY(-14px) scale(1.03);
-  box-shadow:
-    0 40px 80px rgba(122, 16, 32, 0.15),
-    0 12px 28px rgba(0, 0, 0, 0.08);
+  animation: cardPulse 2s ease-in-out infinite;
 }
 
 .beneficio-card:hover::before {
@@ -1273,10 +1268,6 @@ body.nav-open {
 @keyframes topBarMove {
   0% { background-position: 0% 0; }
   100% { background-position: 300% 0; }
-}
-
-.beneficio-card:hover {
-  animation: cardPulse 2s ease-in-out infinite;
 }
 
 @keyframes cardPulse {
@@ -1721,13 +1712,34 @@ body.nav-open {
   border: 1px solid #e8e0d8;
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   transition:
-    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.35s ease;
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7a1020, #c9a227, #7a1020);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .contact-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(122,16,32,0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(122,16,32,0.1);
+}
+
+.contact-card:hover::after {
+  transform: scaleX(1);
+  animation: topBarMove 1.2s linear infinite;
 }
 
 .contact-card__icon {
@@ -1740,7 +1752,7 @@ body.nav-open {
   align-items: center;
   justify-content: center;
   color: var(--guinda);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .contact-card__icon svg {
@@ -1751,7 +1763,7 @@ body.nav-open {
 .contact-card:hover .contact-card__icon {
   background: linear-gradient(135deg, #7a1020, #5a0c18);
   color: #fff;
-  transform: scale(1.05);
+  transform: scale(1.1) rotate(-3deg);
 }
 
 .contact-card__body {

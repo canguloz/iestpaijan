@@ -56,16 +56,38 @@
 
 .enlace-card {
   background: #fff;
-  border-radius: 14px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.enlace-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7a1020, #c9a227, #7a1020);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .enlace-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(122,16,32,0.1);
+}
+
+.enlace-card:hover::after {
+  transform: scaleX(1);
 }
 
 .enlace-card img {
