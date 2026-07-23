@@ -412,9 +412,9 @@ function initContacto() {
 }
 
 function runInit() {
-  initRevealOnScroll();
   initNoticias();
   initContacto();
+  initRevealOnScroll();
 }
 
 if (document.readyState === 'loading') {
