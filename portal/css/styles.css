@@ -966,11 +966,12 @@ body.nav-open {
 /* ── CTA wrapper (force new line + center) ── */
 .hero__cta-wrapper {
   position: absolute;
-  bottom: -1.2rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
+  z-index: 2;
 }
 
 /* ── Floating CTA button ── */
