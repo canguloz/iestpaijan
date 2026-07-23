@@ -163,19 +163,18 @@ function initNoticias() {
   try {
     const feed = document.getElementById("news-feed");
     if (!feed) return;
-
     if (feed.children.length > 0) return;
 
     const isPortalDir = window.location.pathname.includes('/portal/') || window.location.pathname.endsWith('/portal');
     const imgBase = isPortalDir ? 'imagenes/' : 'portal/imagenes/';
 
     const noticias = [
-      { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026.", imagen: [imgBase + "noticias/aviso-2026-1.jpeg", imgBase + "noticias/aviso-2026-1.jpeg"] },
-      { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar.", imagen: [imgBase + "noticias/fallesimiento_07_05_2026.jpeg", imgBase + "noticias/fallesimiento_07_05_2026.jpeg"] },
-      { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador", imagen: [imgBase + "noticias/dia_del_trabajador.jpeg", imgBase + "noticias/dia_del_trabajador.jpeg"] },
-      { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación.", imagen: [imgBase + "noticias/graduacion2026.jpg", imgBase + "noticias/integrantes2026.jpg"] },
-      { titulo: "Examen de Admisión", fecha: "03/04/2026", contenido: "Prepárate para ingresar!", imagen: [imgBase + "admision/primer_admision/1.jpeg"] },
-      { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones.", imagen: [imgBase + "noticias/inicio_clases20252.jpg"] },
+      { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026. Los interesados deben acercarse a la oficina de administración para recibir mayores detalles e iniciar el proceso de titulación correspondiente.", imagen: [imgBase + "noticias/aviso-2026-1.jpeg", imgBase + "noticias/aviso-2026-1.jpeg"], categoria: "comunicado" },
+      { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar por la irreparable pérdida de nuestro querido miembro de la comunidad educativa. Paz en su tumba.", imagen: [imgBase + "noticias/fallesimiento_07_05_2026.jpeg", imgBase + "noticias/fallesimiento_07_05_2026.jpeg"], categoria: "comunicado" },
+      { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador a toda nuestra comunidad educativa. Reconocimiento especial a nuestros docentes y personal administrativo que día a día construyen el futuro de nuestros estudiantes.", imagen: [imgBase + "noticias/dia_del_trabajador.jpeg", imgBase + "noticias/dia_del_trabajador.jpeg"], categoria: "evento" },
+      { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación 2026-1, un evento especial donde celebraremos el esfuerzo y dedicación de nuestros egresados que culminan exitosamente su formación profesional.", imagen: [imgBase + "noticias/graduacion2026.jpg", imgBase + "noticias/integrantes2026.jpg"], categoria: "evento" },
+      { titulo: "Examen de Admisión 2026", fecha: "03/04/2026", contenido: "Prepárate para ingresar al IESTP Paiján. El examen de admisión 2026 está próximo a realizarse. Inscríbete y asegura tu vacante en nuestros programas académicos de alta demanda.", imagen: [imgBase + "admision/primer_admision/1.jpeg"], categoria: "admision" },
+      { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones para el Proceso de Admisión 2026-1. No pierdas la oportunidad de formar parte de nuestra institución y construir tu futuro profesional.", imagen: [imgBase + "noticias/inicio_clases20252.jpg"], categoria: "admision" },
     ];
 
     const modal = document.getElementById("news-modal");
@@ -183,45 +182,74 @@ function initNoticias() {
     const modalTitle = document.getElementById("modal-title");
     const modalDate = document.getElementById("modal-date");
     const modalText = document.getElementById("modal-text");
-    const closeBtn = document.querySelector(".close");
-    const prevBtn = document.querySelector(".prev");
-    const nextBtn = document.querySelector(".next");
+    const modalCategory = document.getElementById("modal-category");
+    const closeBtn = document.getElementById("modal-close");
+    const prevBtn = document.getElementById("modal-prev");
+    const nextBtn = document.getElementById("modal-next");
 
     let currentImages = [];
     let currentIndex = 0;
 
-    noticias.forEach(function(noticia, index) {
-      const card = document.createElement("div");
-      card.className = "news-card";
-      card.style.setProperty("--i", index);
-      card.innerHTML =
-        '<img src="' + noticia.imagen[0] + '" alt="' + noticia.titulo + '" class="news-img" loading="lazy">' +
-        '<div class="news-content">' +
-          '<h3>' + noticia.titulo + '</h3>' +
-          '<span class="news-date">' + noticia.fecha + '</span>' +
-          '<p>' + noticia.contenido + '</p>' +
-        '</div>';
+    function openModal() {
+      if (!modal) return;
+      modal.classList.add('is-open');
+      document.body.style.overflow = "hidden";
+    }
 
-      card.addEventListener("click", function() {
-        if (!modal) return;
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-        currentImages = noticia.imagen;
-        currentIndex = 0;
-        showImage(currentIndex);
-        if (modalTitle) modalTitle.textContent = noticia.titulo;
-        if (modalDate) modalDate.textContent = noticia.fecha;
-        if (modalText) modalText.textContent = noticia.contenido;
-      });
-
-      feed.appendChild(card);
-    });
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.style.overflow = "";
+    }
 
     function showImage(index) {
       if (modalImg && currentImages && currentImages[index]) {
         modalImg.src = currentImages[index];
       }
     }
+
+    function renderCategory(cat) {
+      var labels = { evento: "Evento", admision: "Admisión", comunicado: "Comunicado" };
+      return '<span class="news-card__category news-card__category--' + cat + '">' + (labels[cat] || cat) + '</span>';
+    }
+
+    function renderDateSvg() {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+    }
+
+    noticias.forEach(function(noticia, index) {
+      const card = document.createElement("div");
+      card.className = "news-card reveal-on-scroll";
+      card.style.setProperty("--i", index);
+      card.innerHTML =
+        '<div class="news-card__image">' +
+          renderCategory(noticia.categoria) +
+          '<img src="' + noticia.imagen[0] + '" alt="' + noticia.titulo + '" loading="lazy">' +
+        '</div>' +
+        '<div class="news-card__content">' +
+          '<span class="news-card__date">' + renderDateSvg() + noticia.fecha + '</span>' +
+          '<h3 class="news-card__title">' + noticia.titulo + '</h3>' +
+          '<p class="news-card__excerpt">' + noticia.contenido + '</p>' +
+        '</div>';
+
+      card.addEventListener("click", function() {
+        if (!modal) return;
+        currentImages = noticia.imagen;
+        currentIndex = 0;
+        showImage(currentIndex);
+        if (modalTitle) modalTitle.textContent = noticia.titulo;
+        if (modalDate) modalDate.innerHTML = renderDateSvg() + noticia.fecha;
+        if (modalText) modalText.textContent = noticia.contenido;
+        if (modalCategory) {
+          var labels = { evento: "Evento", admision: "Admisión", comunicado: "Comunicado" };
+          modalCategory.textContent = labels[noticia.categoria] || noticia.categoria;
+          modalCategory.className = "modal-content__category modal-content__category--" + noticia.categoria;
+        }
+        openModal();
+      });
+
+      feed.appendChild(card);
+    });
 
     if (prevBtn) prevBtn.addEventListener("click", function(e) {
       e.stopPropagation();
@@ -239,22 +267,17 @@ function initNoticias() {
 
     if (closeBtn) closeBtn.addEventListener("click", function(e) {
       e.stopPropagation();
-      if (modal) modal.style.display = "none";
-      document.body.style.overflow = "";
+      closeModal();
     });
 
-    window.addEventListener("click", function(e) {
-      if (e.target === modal) {
-        if (modal) modal.style.display = "none";
-        document.body.style.overflow = "";
-      }
-    });
+    if (modal) {
+      modal.addEventListener("click", function(e) {
+        if (e.target === modal) closeModal();
+      });
+    }
 
     document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape" && modal) {
-        modal.style.display = "none";
-        document.body.style.overflow = "";
-      }
+      if (e.key === "Escape" && modal && modal.classList.contains('is-open')) closeModal();
     });
   } catch (err) {
     console.error("Error in initNoticias:", err);
