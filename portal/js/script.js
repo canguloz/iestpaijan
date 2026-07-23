@@ -25,6 +25,13 @@ if (hero && 'IntersectionObserver' in window) {
 const menuToggle = document.querySelector('.hamburger');
 const mainNav = document.querySelector('#main-nav');
 
+function closeNav() {
+  mainNav?.classList.remove('is-open');
+  menuToggle?.classList.remove('is-active');
+  menuToggle?.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('nav-open');
+}
+
 menuToggle?.addEventListener('click', () => {
   const open = mainNav.classList.toggle('is-open');
   menuToggle.classList.toggle('is-active', open);
@@ -36,26 +43,24 @@ menuToggle?.addEventListener('click', () => {
 document.addEventListener('click', (e) => {
   if (mainNav?.classList.contains('is-open')) {
     if (window.innerWidth <= 900 && e.target.closest('#main-nav') && !e.target.closest('.nav__item')) {
-      mainNav.classList.remove('is-open');
-      menuToggle?.classList.remove('is-active');
-      menuToggle?.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nav-open');
+      closeNav();
     } else if (!e.target.closest('.header__inner')) {
-      mainNav.classList.remove('is-open');
-      menuToggle?.classList.remove('is-active');
-      menuToggle?.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nav-open');
+      closeNav();
     }
   }
+});
+
+// Cerrar menú al hacer clic en cualquier enlace del nav (mobile)
+document.querySelectorAll('#main-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 900) closeNav();
+  });
 });
 
 // Cerrar menú al redimensionar a desktop
 window.addEventListener('resize', () => {
   if (window.innerWidth > 900 && mainNav?.classList.contains('is-open')) {
-    mainNav.classList.remove('is-open');
-    menuToggle?.classList.remove('is-active');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('nav-open');
+    closeNav();
   }
 });
 
@@ -67,6 +72,12 @@ document.querySelectorAll('.nav__item > .nav__link').forEach(link => {
       link.closest('.nav__item').classList.toggle('is-open');
     }
   });
+});
+
+// Forzar updateHeader tras navegación por ancla
+window.addEventListener('hashchange', () => {
+  updateHeader();
+  if (window.innerWidth <= 900) closeNav();
 });
 
 
