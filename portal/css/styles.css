@@ -965,10 +965,12 @@ body.nav-open {
 
 /* ── CTA wrapper (force new line + center) ── */
 .hero__cta-wrapper {
-  flex: 0 0 100%;
+  position: absolute;
+  bottom: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  margin-top: 5rem;
 }
 
 /* ── Floating CTA button ── */
@@ -995,25 +997,10 @@ body.nav-open {
   cursor: pointer;
   margin: 0;
   box-shadow:
-    0 4px 20px rgba(0,0,0,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.12),
-    inset 0 -1px 0 rgba(0,0,0,0.1);
+    0 4px 20px rgba(0,0,0,0.1);
   animation: heroFloat 3s ease-in-out infinite;
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   overflow: hidden;
-}
-
-.hero__scroll-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 14px;
-  padding: 1.5px;
-  background: linear-gradient(135deg, rgba(212,184,86,0.5), rgba(212,184,86,0.1), rgba(212,184,86,0.35));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
 }
 
 .hero__scroll-btn::after {
@@ -1044,10 +1031,8 @@ body.nav-open {
   color: #f0df9a;
   transform: translateY(-5px) scale(1.05);
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.2),
-    0 0 40px rgba(212,184,86,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.15),
-    inset 0 -1px 0 rgba(0,0,0,0.1);
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 0 40px rgba(212,184,86,0.08);
   animation-play-state: paused;
 }
 
@@ -2504,10 +2489,6 @@ select.form__input {
   .hero__scroll-btn {
     font-size: 0.75rem;
     padding: 0.6rem 1.5rem 0.5rem;
-    border-radius: 12px;
-  }
-
-  .hero__scroll-btn::before {
     border-radius: 12px;
   }
 
