@@ -19,6 +19,12 @@ body {
   padding-top: 70px;
 }
 
+/* Hero pages: remove body padding so hero starts at viewport top */
+body:has(.hero),
+body:has(.pres-hero) {
+  padding-top: 0;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -49,9 +55,9 @@ img {
   right: 0;
   z-index: 1000;
   height: 70px;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -62,6 +68,21 @@ img {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.04);
 }
 
+/* Hero pages: transparent header initially */
+body:has(.hero) .header,
+body:has(.pres-hero) .header {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body:has(.hero) .header.scrolled,
+body:has(.pres-hero) .header.scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+}
+
 .header__inner {
   display: flex;
   justify-content: space-between;
@@ -69,9 +90,20 @@ img {
   height: 100%;
   padding: 0;
   gap: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   transition: border-color 0.4s ease;
   position: relative;
+}
+
+/* Hero pages: lighter border initially */
+body:has(.hero) .header__inner,
+body:has(.pres-hero) .header__inner {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body:has(.hero) .header.scrolled .header__inner,
+body:has(.pres-hero) .header.scrolled .header__inner {
+  border-bottom-color: rgba(0, 0, 0, 0.04);
 }
 
 .header.scrolled .header__inner {
@@ -97,8 +129,10 @@ img {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
 }
 
-.header:not(.scrolled) .brand__img {
-  filter: drop-shadow(0 2px 8px rgba(255,255,255,0.3)) brightness(1.2);
+/* Hero pages: brighter logo */
+body:has(.hero) .header:not(.scrolled) .brand__img,
+body:has(.pres-hero) .header:not(.scrolled) .brand__img {
+  filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 
 .nav {
@@ -123,7 +157,7 @@ img {
   padding: 0.55rem 1rem;
   font-weight: 550;
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(51, 51, 51, 0.85);
   border-radius: 8px;
   transition: all 0.25s ease;
   position: relative;
@@ -133,15 +167,29 @@ img {
 }
 
 .nav__link:hover {
+  color: #7a1020;
+  background: rgba(122, 16, 32, 0.06);
+}
+
+/* Hero pages: white nav links */
+body:has(.hero) .nav__link,
+body:has(.pres-hero) .nav__link {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body:has(.hero) .nav__link:hover,
+body:has(.pres-hero) .nav__link:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.12);
 }
 
-.header.scrolled .nav__link {
+body:has(.hero) .header.scrolled .nav__link,
+body:has(.pres-hero) .header.scrolled .nav__link {
   color: rgba(51, 51, 51, 0.85);
 }
 
-.header.scrolled .nav__link:hover {
+body:has(.hero) .header.scrolled .nav__link:hover,
+body:has(.pres-hero) .header.scrolled .nav__link:hover {
   color: #7a1020;
   background: rgba(122, 16, 32, 0.06);
 }
@@ -155,12 +203,19 @@ img {
   transform: translateX(-50%) scaleX(0);
   width: 65%;
   height: 2.5px;
-  background: linear-gradient(90deg, #fff, var(--dorado, #c9a227));
+  background: linear-gradient(90deg, #7a1020, #c9a227);
   border-radius: 4px;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.header.scrolled .nav__link::after {
+/* Hero pages: light underline */
+body:has(.hero) .nav__link::after,
+body:has(.pres-hero) .nav__link::after {
+  background: linear-gradient(90deg, #fff, #c9a227);
+}
+
+body:has(.hero) .header.scrolled .nav__link::after,
+body:has(.pres-hero) .header.scrolled .nav__link::after {
   background: linear-gradient(90deg, #7a1020, #c9a227);
 }
 
@@ -216,9 +271,10 @@ img {
   margin-right: 0.5rem;
 }
 
-.header:not(.scrolled) .header__social::before {
+/* Hero pages: lighter separator */
+body:has(.hero) .header:not(.scrolled) .header__social::before,
+body:has(.pres-hero) .header:not(.scrolled) .header__social::before {
   background: rgba(255, 255, 255, 0.25);
-}
 }
 
 .header__social::after,
@@ -238,12 +294,20 @@ img {
   opacity: 0.65;
 }
 
-.header:not(.scrolled) .header__social-icon {
+.header__social-icon:hover {
+  transform: scale(1.25);
+  opacity: 1;
+}
+
+/* Hero pages: white social icons */
+body:has(.hero) .header:not(.scrolled) .header__social-icon,
+body:has(.pres-hero) .header:not(.scrolled) .header__social-icon {
   filter: brightness(0) invert(1);
   opacity: 0.85;
 }
 
-.header:not(.scrolled) .header__social-icon:hover {
+body:has(.hero) .header:not(.scrolled) .header__social-icon:hover,
+body:has(.pres-hero) .header:not(.scrolled) .header__social-icon:hover {
   opacity: 1;
 }
 
@@ -471,10 +535,6 @@ img {
 }
 
 .hamburger:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.header.scrolled .hamburger:hover {
   background: rgba(122, 16, 32, 0.06);
 }
 
@@ -482,14 +542,31 @@ img {
   display: block;
   width: 20px;
   height: 2px;
-  background: #fff;
+  background: #7a1020;
   border-radius: 4px;
   transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-origin: center;
   will-change: transform;
 }
 
-.header.scrolled .hamburger__line {
+/* Hero pages: white hamburger */
+body:has(.hero) .hamburger:hover,
+body:has(.pres-hero) .hamburger:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+body:has(.hero) .header.scrolled .hamburger:hover,
+body:has(.pres-hero) .header.scrolled .hamburger:hover {
+  background: rgba(122, 16, 32, 0.06);
+}
+
+body:has(.hero) .hamburger__line,
+body:has(.pres-hero) .hamburger__line {
+  background: #fff;
+}
+
+body:has(.hero) .header.scrolled .hamburger__line,
+body:has(.pres-hero) .header.scrolled .hamburger__line {
   background: #7a1020;
 }
 
