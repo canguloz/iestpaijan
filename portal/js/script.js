@@ -2,13 +2,22 @@
 // HEADER SCROLL EFFECT
 // ==============================
 const header = document.querySelector('.header');
-let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  header?.classList.toggle('scrolled', y > 20);
-  lastScroll = y;
-}, { passive: true });
+function updateHeader() {
+  header?.classList.toggle('scrolled', window.scrollY > 20);
+}
+
+updateHeader();
+window.addEventListener('scroll', updateHeader, { passive: true });
+
+// Fallback hero detection via IntersectionObserver
+const hero = document.querySelector('.hero');
+if (hero && 'IntersectionObserver' in window) {
+  const obs = new IntersectionObserver(([entry]) => {
+    header?.classList.toggle('scrolled', !entry.isIntersecting);
+  }, { threshold: 0 });
+  obs.observe(hero);
+}
 
 // ==============================
 // MENU RESPONSIVE
