@@ -20,8 +20,7 @@ body {
 }
 
 /* Hero pages: remove body padding so hero starts at viewport top */
-body:has(.hero),
-body:has(.pres-hero) {
+.has-hero {
   padding-top: 0;
 }
 
@@ -69,15 +68,13 @@ img {
 }
 
 /* Hero pages: transparent header initially */
-body:has(.hero) .header,
-body:has(.pres-hero) .header {
+ .has-hero .header {
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
 
-body:has(.hero) .header.scrolled,
-body:has(.pres-hero) .header.scrolled {
+ .has-hero .header.scrolled {
   background: rgba(245, 245, 248, 0.95);
   backdrop-filter: blur(24px) saturate(1.8);
   -webkit-backdrop-filter: blur(24px) saturate(1.8);
@@ -97,13 +94,11 @@ body:has(.pres-hero) .header.scrolled {
 }
 
 /* Hero pages: lighter border initially */
-body:has(.hero) .header__inner,
-body:has(.pres-hero) .header__inner {
+ .has-hero .header__inner {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-body:has(.hero) .header.scrolled .header__inner,
-body:has(.pres-hero) .header.scrolled .header__inner {
+ .has-hero .header.scrolled .header__inner {
   border-bottom-color: rgba(0, 0, 0, 0.04);
 }
 
@@ -131,8 +126,7 @@ body:has(.pres-hero) .header.scrolled .header__inner {
 }
 
 /* Hero pages: brighter logo */
-body:has(.hero) .header:not(.scrolled) .brand__img,
-body:has(.pres-hero) .header:not(.scrolled) .brand__img {
+ .has-hero .header:not(.scrolled) .brand__img {
   filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 
@@ -173,24 +167,20 @@ body:has(.pres-hero) .header:not(.scrolled) .brand__img {
 }
 
 /* Hero pages: white nav links */
-body:has(.hero) .nav__link,
-body:has(.pres-hero) .nav__link {
+ .has-hero .nav__link {
   color: rgba(255, 255, 255, 0.9);
 }
 
-body:has(.hero) .nav__link:hover,
-body:has(.pres-hero) .nav__link:hover {
+ .has-hero .nav__link:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.12);
 }
 
-body:has(.hero) .header.scrolled .nav__link,
-body:has(.pres-hero) .header.scrolled .nav__link {
+ .has-hero .header.scrolled .nav__link {
   color: rgba(51, 51, 51, 0.85);
 }
 
-body:has(.hero) .header.scrolled .nav__link:hover,
-body:has(.pres-hero) .header.scrolled .nav__link:hover {
+ .has-hero .header.scrolled .nav__link:hover {
   color: #7a1020;
   background: rgba(122, 16, 32, 0.06);
 }
@@ -210,13 +200,11 @@ body:has(.pres-hero) .header.scrolled .nav__link:hover {
 }
 
 /* Hero pages: light underline */
-body:has(.hero) .nav__link::after,
-body:has(.pres-hero) .nav__link::after {
+ .has-hero .nav__link::after {
   background: linear-gradient(90deg, #fff, #c9a227);
 }
 
-body:has(.hero) .header.scrolled .nav__link::after,
-body:has(.pres-hero) .header.scrolled .nav__link::after {
+ .has-hero .header.scrolled .nav__link::after {
   background: linear-gradient(90deg, #7a1020, #c9a227);
 }
 
@@ -273,8 +261,7 @@ body:has(.pres-hero) .header.scrolled .nav__link::after {
 }
 
 /* Hero pages: lighter separator */
-body:has(.hero) .header:not(.scrolled) .header__social::before,
-body:has(.pres-hero) .header:not(.scrolled) .header__social::before {
+ .has-hero .header:not(.scrolled) .header__social::before {
   background: rgba(255, 255, 255, 0.25);
 }
 
@@ -301,14 +288,12 @@ body:has(.pres-hero) .header:not(.scrolled) .header__social::before {
 }
 
 /* Hero pages: white social icons */
-body:has(.hero) .header:not(.scrolled) .header__social-icon,
-body:has(.pres-hero) .header:not(.scrolled) .header__social-icon {
+ .has-hero .header:not(.scrolled) .header__social-icon {
   filter: brightness(0) invert(1);
   opacity: 0.85;
 }
 
-body:has(.hero) .header:not(.scrolled) .header__social-icon:hover,
-body:has(.pres-hero) .header:not(.scrolled) .header__social-icon:hover {
+ .has-hero .header:not(.scrolled) .header__social-icon:hover {
   opacity: 1;
 }
 
@@ -551,23 +536,19 @@ body:has(.pres-hero) .header:not(.scrolled) .header__social-icon:hover {
 }
 
 /* Hero pages: white hamburger */
-body:has(.hero) .hamburger:hover,
-body:has(.pres-hero) .hamburger:hover {
+ .has-hero .hamburger:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
-body:has(.hero) .header.scrolled .hamburger:hover,
-body:has(.pres-hero) .header.scrolled .hamburger:hover {
+ .has-hero .header.scrolled .hamburger:hover {
   background: rgba(122, 16, 32, 0.06);
 }
 
-body:has(.hero) .hamburger__line,
-body:has(.pres-hero) .hamburger__line {
+ .has-hero .hamburger__line {
   background: #fff;
 }
 
-body:has(.hero) .header.scrolled .hamburger__line,
-body:has(.pres-hero) .header.scrolled .hamburger__line {
+ .has-hero .header.scrolled .hamburger__line {
   background: #7a1020;
 }
 
