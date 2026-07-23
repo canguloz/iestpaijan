@@ -55,7 +55,7 @@ window.addEventListener('resize', () => {
 // Submenu accordion en móvil
 document.querySelectorAll('.nav__item > .nav__link').forEach(link => {
   link.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768 && link.nextElementSibling?.classList.contains('submenu')) {
+    if (window.innerWidth <= 900 && link.nextElementSibling?.classList.contains('submenu')) {
       e.preventDefault();
       link.closest('.nav__item').classList.toggle('is-open');
     }
