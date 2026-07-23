@@ -2316,6 +2316,10 @@ select.form__input {
     padding: 2rem 1rem;
   }
 
+  .hero__content {
+    text-align: center;
+  }
+
   .hero__title {
     font-size: 1.6rem;
   }

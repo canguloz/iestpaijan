@@ -32,19 +32,26 @@ menuToggle?.addEventListener('click', () => {
   document.body.classList.toggle('nav-open', open);
 });
 
-// Cerrar menú al hacer clic fuera
+// Cerrar menú al hacer clic fuera o en el overlay del nav
 document.addEventListener('click', (e) => {
-  if (mainNav?.classList.contains('is-open') && !e.target.closest('.header__inner')) {
-    mainNav.classList.remove('is-open');
-    menuToggle?.classList.remove('is-active');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('nav-open');
+  if (mainNav?.classList.contains('is-open')) {
+    if (window.innerWidth <= 900 && e.target.closest('#main-nav') && !e.target.closest('.nav__item')) {
+      mainNav.classList.remove('is-open');
+      menuToggle?.classList.remove('is-active');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    } else if (!e.target.closest('.header__inner')) {
+      mainNav.classList.remove('is-open');
+      menuToggle?.classList.remove('is-active');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    }
   }
 });
 
 // Cerrar menú al redimensionar a desktop
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 768 && mainNav?.classList.contains('is-open')) {
+  if (window.innerWidth > 900 && mainNav?.classList.contains('is-open')) {
     mainNav.classList.remove('is-open');
     menuToggle?.classList.remove('is-active');
     menuToggle?.setAttribute('aria-expanded', 'false');
